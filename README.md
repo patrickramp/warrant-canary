@@ -3,7 +3,7 @@ A simple warrant canary/ signed policy builder in Rust. To facilitate making an 
 
 This command line application will build a HTML page containing a signed warant canary. The included polocy and anouncemnts are for example only and may not be appropreate for everyone.
 
-The application takes four command line arugments: the URL to your website, the name or email for your GPG key, the experation of the canary in days and the path to the output html.
+The application takes four command line arugments: the URL to your website, the name or email for your GPG key, the experation of the canary in days and the path to the output html. Note that the output directory must already exist.
 
 Example: $ ./warrant-canary example.com Edward_Snowden 30 /var/www/canary/index.html
 
