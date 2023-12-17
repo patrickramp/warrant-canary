@@ -36,24 +36,18 @@ fn header() -> String {
     String::from(
         r###"<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>
-        Warrant Canary
-        </title>
-    </head>
-    <body>
-        <div style="text-align:center">
-            <h1>
-            Warrant Canary
-            </h1>
-            <hr>
-        <h2>
-        Please read carefully, this policy is proof of soundness.
-        </h2>
-        </div>
-        <p>
-        <pre>
-        "###,
+<head>
+    <meta charset="UTF-8">
+    <title>Warrant Canary</title>
+</head>
+<body>
+    <div style="text-align:center">
+        <h1>Warrant Canary</h1>
+        <hr>
+        <h2>Please read carefully, this policy is proof of soundness.</h2>
+    </div>
+    <p>
+        <pre>"###,
     )
 }
 
@@ -62,9 +56,8 @@ fn footer() -> String {
     String::from(
         r###"
         </pre>
-        </p>
-    </body>
-</html>
-        "###,
+    </p>
+</body>
+</html>"###,
     )
 }

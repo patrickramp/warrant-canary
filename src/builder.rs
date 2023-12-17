@@ -99,7 +99,7 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
     // Write proof of freshness section to the canary_elements file
     writeln!(
         canary_file,
-        "Freshness: \nHeadlines for today, {} from {}:",
+        "Headlines for today, {} from {}:\n",
         now.format("%B %d, %Y"),
         freshness_source
     )
@@ -119,7 +119,7 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
         // Write the headline to the canary_elements file
         writeln!(
             canary_file,
-            " {}",
+            ">{}",
             String::from_utf8_lossy(
                 get_headline(&fresh_headlines, headline_number)
                     //.unwrap()
@@ -139,20 +139,19 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
     let raw_fingerprint = String::from_utf8_lossy(&fingerprint.stdout).to_string();
 
     // Use regex to extract the GPG fingerprint from the raw fingerprint
-    let signer = parse_fingerprint(&raw_fingerprint);
+    let clean_fingerprint = parse_fingerprint(&raw_fingerprint);
     // Write the GPG fingerprint to the canary_elements file
     writeln!(
         canary_file,
         "\n=======================================================================\n\
-Signed:
-{} {}\n",
+Signed:\n\n - {} \n{}\n",
         &configuration.gpg_key_id,
-        signer.to_uppercase()
+        clean_fingerprint.to_uppercase()
     )
     .expect("Error writing signers to canary.txt");
     println!(
         "Signer fingerprint added successfully: {}: {}",
-        &configuration.gpg_key_id, &signer
+        &configuration.gpg_key_id, &clean_fingerprint
     );
     println!("Canary txt file generated successfully: {}", canary_path);
 
