@@ -8,14 +8,14 @@ mod html;
 mod scraper;
 mod signer;
 
-/// Struct to hold canary arguments
+// Struct to hold canary arguments
 pub struct CanaryConfig {
     pub(crate) domain_name: String,
     pub(crate) expiration_timer: u64,
     pub(crate) gpg_key_id: String,
     pub(crate) output_dir: String,
 }
-/// Main function
+// Main function
 pub fn main() {
     // Collect canary arguments from command line
     let args: Vec<String> = env::args().collect();

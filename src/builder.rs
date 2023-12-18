@@ -2,7 +2,7 @@
 use crate::scraper::scrape_headlines;
 use crate::CanaryConfig;
 use chrono::Local;
-use easy_hasher::easy_hasher::raw_sha256;
+use crypto_hash::{Algorithm, hex_digest};
 use regex::Regex;
 use std::fs::read;
 use std::io;
@@ -10,11 +10,6 @@ use std::io::Write;
 use std::process::Command;
 use std::time::Duration;
 
-// SHA-256 string hashing function
-fn sha256(data: &Vec<u8>) -> String {
-    let hash = raw_sha256(data.clone());
-    hash.to_hex_string()
-}
 // Function to get the nth headline from web scrape results
 fn get_headline(freshness: &Vec<String>, n: usize) -> String {
     return freshness[n].to_string();
@@ -83,7 +78,7 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
     // Read the policy file
     let policy = read("./canary_elements/policy.txt").expect("Error reading policy file");
     // Create a SHA-256 hash of the policy
-    let result = sha256(&policy);
+    let result = hex_digest(Algorithm::SHA256, &policy);
     // Write the SHA-256 hash to the canary file
     writeln!(canary_file, "SHA256:{}", &result).expect("Error writing policy hash to canary.txt");
     println!("Policy hash added successfully: {}", result);
