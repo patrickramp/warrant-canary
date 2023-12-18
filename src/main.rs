@@ -19,6 +19,7 @@ pub struct CanaryConfig {
 pub fn main() {
     // Collect canary arguments from command line
     let args: Vec<String> = env::args().collect();
+
     // Map canary arguments to CanaryConfig struct
     let configuration = CanaryConfig {
         domain_name: args[1].clone(),
@@ -44,7 +45,7 @@ pub fn main() {
         std::process::exit(1);
     }
     println!(
-        "Canary signed successfully by: {} ./canary_signatures/canary.txt.asc",
+        "Canary signed successfully by: {} ./canary.txt.asc",
         configuration.gpg_key_id
     );
 

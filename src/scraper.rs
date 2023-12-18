@@ -2,12 +2,12 @@
 use reqwest::{Client, StatusCode};
 use scraper::{Html, Selector};
 
-/// Function to set app user agent.
+// Function to set app user agent.
 fn get_client() -> Client {
     let agent = format!("{}/{}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
     Client::builder().user_agent(agent).build().unwrap()
 }
-/// Function to scrape website.
+// Function to scrape website.
 #[tokio::main]
 pub(crate) async fn scrape_headlines(domain_name: &str) -> Vec<std::string::String> {
     // Define client for web request.
@@ -25,9 +25,6 @@ pub(crate) async fn scrape_headlines(domain_name: &str) -> Vec<std::string::Stri
         ),
     };
 
-    // Uncomment to save raw website html for debugging
-    //save_raw_html(&raw_html, domain_name);
-
     // Define Vec to store contents.
     let mut headlines = Vec::new();
     // Parse response string into HTML.
@@ -39,11 +36,9 @@ pub(crate) async fn scrape_headlines(domain_name: &str) -> Vec<std::string::Stri
     for element in html_data.select(&article_selector) {
         let headline = element.inner_html().trim().to_string();
 
-        // Uncomment to print results to screen.
-        //println!("Article: {}", headline);
-
         // Push headline to Vec.
         headlines.push(headline)
     }
+    // Return Vec of headlines.
     return headlines;
 }

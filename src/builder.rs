@@ -19,6 +19,7 @@ fn sha256(data: &Vec<u8>) -> String {
 fn get_headline(freshness: &Vec<String>, n: usize) -> String {
     return freshness[n].to_string();
 }
+
 // Function to parse the raw GPG signature and extract relevant information.
 fn parse_fingerprint(raw_fingerprint: &str) -> String {
     // Create a regex to capture the desired part of the filename.
@@ -108,6 +109,7 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
 
     // Scrape fresh headlines from freshness source
     let fresh_headlines = scrape_headlines(freshness_source);
+
     // Iterate through the top 3 headlines
     for headline_number in 0..=2 {
         // Print the headline to the console
@@ -153,7 +155,7 @@ Signed:\n\n - {} \n{}\n",
         "Signer fingerprint added successfully: {}: {}",
         &configuration.gpg_key_id, &clean_fingerprint
     );
-    println!("Canary txt file generated successfully: {}", canary_path);
+    println!("New canary.txt file generated successfully: {}", canary_path);
 
     Ok(())
 }
