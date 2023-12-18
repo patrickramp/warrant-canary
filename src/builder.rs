@@ -130,7 +130,7 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
         )
         .expect("Error writing freshness to canary.txt");
     }
-    println!("Canary freshness updated successfully.");
+    println!("Canary freshness headlines successfully added to canary.txt.");
 
     // Write the signers section to the canary_elements file
     // Collect raw signers GPG fingerprint
@@ -139,7 +139,6 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
         .output()
         .expect("failed to get fingerprint");
     let raw_fingerprint = String::from_utf8_lossy(&fingerprint.stdout).to_string();
-
     // Use regex to extract the GPG fingerprint from the raw fingerprint
     let clean_fingerprint = parse_fingerprint(&raw_fingerprint);
     // Write the GPG fingerprint to the canary_elements file
