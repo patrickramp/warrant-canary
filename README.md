@@ -1,5 +1,5 @@
 # warrant-canary
-A simple warrant canary/ signed policy builder in Rust. Designed to facilitate the making an HTML canary notice.  
+A simple warrant canary/ signed policy builder in Rust. Designed to facilitate quickly making a HTML canary notice.
 
 This command line application will build and output a HTML page containing a signed warrant canary. The included policy and announcements are for example only and may not be appropriate for everyone.
 
