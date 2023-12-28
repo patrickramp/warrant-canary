@@ -11,10 +11,11 @@ fn header() -> String {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <style>.center {text-align: center;}</style>
     <title>Warrant Canary</title>
 </head>
 <body>
-    <div style="text-align:center">
+    <div class="center">
         <h1>Warrant Canary</h1>
         <hr>
         <h2>Please read carefully, this policy is proof of soundness.</h2>

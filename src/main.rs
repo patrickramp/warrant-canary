@@ -9,23 +9,23 @@ mod scraper;
 mod signer;
 
 // Struct to hold canary arguments
-pub struct CanaryConfig {
-    pub(crate) domain_name: String,
-    pub(crate) expiration_timer: u64,
-    pub(crate) gpg_key_id: String,
-    pub(crate) output_dir: String,
+pub struct CanaryConfig <'a> {
+    pub(crate) domain_name: &'a String,
+    pub(crate) expiration_timer: &'a u64,
+    pub(crate) gpg_key_id: &'a String,
+    pub(crate) output_dir: &'a String,
 }
 // Main function
-pub fn main() {
+fn main() {
     // Collect canary arguments from command line
     let args: Vec<String> = env::args().collect();
 
     // Map canary arguments to CanaryConfig struct
     let configuration = CanaryConfig {
-        domain_name: args[1].clone(),
-        expiration_timer: args[2].clone().parse().unwrap(),
-        gpg_key_id: args[3].clone(),
-        output_dir: args[4].clone(),
+        domain_name: &args[1],
+        expiration_timer: &args[2].parse().unwrap(),
+        gpg_key_id: &args[3],
+        output_dir: &args[4],
     };
 
     // Specify path to canary txt file
