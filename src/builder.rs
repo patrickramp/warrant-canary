@@ -2,7 +2,7 @@
 use crate::scraper::scrape_headlines;
 use crate::CanaryConfig;
 use chrono::Local;
-use crypto_hash::{Algorithm, hex_digest};
+use crypto_hash::{hex_digest, Algorithm};
 use regex::Regex;
 use std::fs::read;
 use std::io;
@@ -26,7 +26,6 @@ fn parse_fingerprint(raw_fingerprint: &str) -> String {
 
 // Function to build the canary.txt file
 pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Result<()> {
-
     // Specify domain to scrape for freshness
     let freshness_source = "www.newsnationnow.com";
 
@@ -78,10 +77,15 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
     // Read the policy file
     let policy = read("./canary_elements/policy.txt").expect("Error reading policy file");
     // Create a SHA-256 hash of the policy
-    let result = hex_digest(Algorithm::SHA256, &policy);
+    let policy_hash = hex_digest(Algorithm::SHA256, &policy);
     // Write the SHA-256 hash to the canary file
-    writeln!(canary_file, "SHA256:{}", &result).expect("Error writing policy hash to canary.txt");
-    println!("Policy hash added successfully: {}", result);
+    writeln!(
+        canary_file,
+        "Take note of the below hash to detect any changes to these statements.\nSAH256:{}",
+        &policy_hash
+    )
+    .expect("Error writing policy hash to canary.txt");
+    println!("Policy hash added successfully: {}", &policy_hash);
 
     // Write the announcements section to the canary_elements file
     writeln!(
@@ -116,7 +120,8 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
         // Write the headline to the canary_elements file
         writeln!(
             canary_file,
-            ">{}",
+            "{}. {}",
+            headline_number + 1,
             String::from_utf8_lossy(
                 get_headline(&fresh_headlines, headline_number)
                     //.unwrap()
@@ -149,7 +154,10 @@ Signed:\n\n - {} \n{}\n",
         "Signer fingerprint added successfully: {}: {}",
         &configuration.gpg_key_id, &clean_fingerprint
     );
-    println!("New canary.txt file generated successfully: {}", canary_path);
+    println!(
+        "New canary.txt file generated successfully: {}",
+        canary_path
+    );
 
     Ok(())
 }

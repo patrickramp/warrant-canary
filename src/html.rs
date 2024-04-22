@@ -15,11 +15,9 @@ fn header() -> String {
     <title>Warrant Canary</title>
 </head>
 <body>
-    <div class="center">
-        <h1>Warrant Canary</h1>
+    <h1>Warrant Canary</h1>
         <hr>
         <h2>Please read carefully, this policy is proof of soundness.</h2>
-    </div>
     <p>
         <pre>"###,
     )
@@ -52,11 +50,12 @@ pub fn build_html(configuration: &CanaryConfig, canary_path: &str) -> io::Result
         "{}",
         String::from_utf8_lossy(
             &read(String::from(format!("{}.asc", canary_path)))
-                .expect("Error reading signed canary.txt.asc"))
-    ).expect("Error writing signed canary.txt.asc to HTML file");
+                .expect("Error reading signed canary.txt.asc")
+        )
+    )
+    .expect("Error writing signed canary.txt.asc to HTML file");
 
     // Write the HTML footer
     writeln!(html_file, "{}", footer()).expect("Error writing HTML footer to HTML file");
-
     Ok(())
 }
