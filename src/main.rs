@@ -9,7 +9,7 @@ mod scraper;
 mod signer;
 
 // Struct to hold canary arguments
-pub struct CanaryConfig <'a> {
+pub struct CanaryConfig<'a> {
     pub(crate) domain_name: &'a String,
     pub(crate) expiration_timer: &'a u64,
     pub(crate) gpg_key_id: &'a String,
@@ -29,7 +29,7 @@ fn main() {
     };
 
     // Specify path to canary txt file
-    let canary_path = "./canary.txt";
+    let canary_path = "./canary_elements/canary.txt";
 
     // Start building canary
     build_canary(&configuration, &canary_path).expect("Error building canary.txt");
@@ -51,6 +51,10 @@ fn main() {
 
     // Build html file
     build_html(&configuration, &canary_path).expect("Error building canary HTML file");
+    // Remove canary.txt.asc
+    std::fs::remove_file(&signed_path).expect("Error removing canary.txt.asc");
+    // Remove staging canary.txt
+    std::fs::remove_file(&canary_path).expect("Error removing canary.txt");
     println!(
         "Canary HTML file generated successfully: {}",
         configuration.output_dir
