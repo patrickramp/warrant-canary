@@ -81,7 +81,7 @@ pub fn build_canary(configuration: &CanaryConfig, canary_path: &str) -> io::Resu
     // Write the SHA-256 hash to the canary file
     writeln!(
         canary_file,
-        "Take note of the below hash to detect any changes to these statements.\nSAH256:{}",
+        "Make note of the below hash to detect any changes to these statements.\nSAH256:{}",
         &policy_hash
     )
     .expect("Error writing policy hash to canary.txt");

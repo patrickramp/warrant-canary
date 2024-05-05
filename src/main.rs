@@ -45,8 +45,8 @@ fn main() {
         std::process::exit(1);
     }
     println!(
-        "Canary signed successfully by: {} ./canary.txt.asc",
-        configuration.gpg_key_id
+        "Canary signed successfully by: {} {}",
+        configuration.gpg_key_id, &signed_path
     );
 
     // Build html file

@@ -9,7 +9,7 @@ fn get_client() -> Client {
 }
 // Function to scrape website.
 #[tokio::main]
-pub(crate) async fn scrape_headlines(domain_name: &str) -> Vec<std::string::String> {
+pub async fn scrape_headlines(domain_name: &str) -> Vec<std::string::String> {
     // Define client for web request.
     let client = get_client();
     // Define url for web request.
@@ -36,8 +36,10 @@ pub(crate) async fn scrape_headlines(domain_name: &str) -> Vec<std::string::Stri
     for element in html_data.select(&article_selector) {
         let headline = element.inner_html().trim().to_string();
 
+        let trimmed_headline = headline.chars().take(68).collect::<String>();
+
         // Push headline to Vec.
-        headlines.push(headline)
+        headlines.push(trimmed_headline)
     }
     // Return Vec of headlines.
     return headlines;

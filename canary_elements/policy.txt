@@ -9,27 +9,28 @@ What is GPG: https://en.wikipedia.org/wiki/GNU_Privacy_Guard
 =======================================================================
 Factual statements as of the above date:
 
-1. We will disclose and/or challenge any letter, order, request, or
-   notice that would compromise the security, integrity, or privacy of 
-   our network, our systems, our users, or our staff.
+1. We will publicly disclose and challenge any letter, order, request,
+   or notice that would compromise the security, integrity, or privacy
+   of our network, our systems, our users, or our staff.
 
 2. All of our infrastructure is in our full control, the integrity of
-   our entire system is sound. We have never installed any law 
-   enforcement software or equipment anywhere on our network.
+   our entire system is sound. We are not aware of any system 
+   compromise, breach or data leak.
 
-3. We are not aware of any system compromise, breach or leak.
+3. We have never installed any law enforcement software or equipment
+   anywhere on our network. 
 
 4. We have never turned over any encryption or authentication
    keys to anyone.
 
-5. We have not been forced or compelled to modify our system to
-   allow access or information leakage to a third party.
+5. We have not been forced or compelled to modify our system in any
+   way that would allow access to a third party.
 
-6. We have never modified or disclosed user content or data at the 
-   request of law enforcement or other third party.
+6. We have never modified or disclosed any user content, data, or 
+   identity at the request of law enforcement or other third party.
 
-7. We have not received any orders, requests, or complaints from
-   law enforcement, formal or informal.
+7. We have never received any orders, requests, or complaints from any
+   law enforcement entity, formal or informal.
 
 8. We have not received any court orders, gag orders, or other similar
    orders from any entity foreign or domestic.
